@@ -1,0 +1,24 @@
+# Dime attribution
+
+DailySum's Dime UI port is adapted from **Dime**, by **Rafael Soh and contributors**. The number pad source credits **Yumi**.
+
+- Upstream: https://github.com/rafsoh/dimeApp
+- Pinned source revision: `0463cb8caba237de781ae02e70a2ec82ae900c67`
+- Upstream license: GNU General Public License, version 3. See [LICENSE](LICENSE).
+- Unmodified local checkout: `upstream/dimeApp/`.
+
+The web UI includes adaptations of LogView, SingleTransactionView, EmojiLogView, TransactionView, NewCategoryPickerView, NumberPad, InsightsSummaryBlockView, InsightsView, LineGraph, SettingsView and CustomTabBar. Original navigation, backspace and empty-state SVG assets and light-mode color values are reused from the upstream asset catalog.
+
+Changes for this project: SwiftUI views translated to React and CSS/SVG; desktop navigation and keyboard controls; HKD/CNY per-transaction selection; daily historical FX conversion and exact decimal aggregation; date/category filters, trend charts and a category donut extension; original-currency subtotals; integer-minor-unit input and the existing IndexedDB repository in place of native Core Data; browser focus, save-error and undo handling.
+
+Ported components identify their upstream paths in source comments. The exact asset/color/component map is saved in `src/dime/upstream.generated.json`; [docs/dime-port.md](docs/dime-port.md) explains the port. Run `node scripts/import-dime.mjs` to copy the original assets and regenerate color tokens from the pinned local checkout.
+
+This is a modified web adaptation, maintained as DailySum. The original Dime authors do not maintain this adaptation. Third-party dependencies retain their respective licenses.
+
+Cent (https://github.com/glink25/Cent), revision 03ae57ad3a1d98c9db08fc71224704150765b96f, was inspected to study its date filtering and analytics organization. Its CC BY-NC-SA-4.0 implementation was not copied into this GPL web port. The retained local checkout is under upstream/Cent.
+
+Daily reference FX quotes are supplied by the European Central Bank through Frankfurter's ECB provider (https://frankfurter.dev/providers/ecb/). Derived CNY/HKD ratios retain both original EUR quotes, publication date and provider attribution. Decimal.js (MIT) supplies high-precision decimal arithmetic.
+
+2026-11-03 UI redesign: the user requested a full visual redesign after the M2 port. The active theme is under src/ui/, with custom Popover-based selectors and calendars and Lucide SVG navigation/category glyphs. Dime-derived workflows and components remain attributed above; the original assets and imported tokens are retained. Saved report rules are DailySum extensions. The pre-redesign source and attribution have been preserved in the local backup archive.
+
+2026-11-03 interoperability: the Cent JSON/ZIP backup and GitHub action-journal formats were also inspected at the pinned revision above. The interoperability layer is independently implemented from those data formats. No Cent implementation is bundled into this GPL application. fflate (MIT) provides in-memory ZIP decompression.
